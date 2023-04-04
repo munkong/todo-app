@@ -1,24 +1,40 @@
-import logo from './logo.svg';
+import {ThemeProvider, createGlobalStyle} from "styled-components";
 import './App.css';
+import TodoApp from "./features/todo/TodoApp";
+import {Provider} from "react-redux";
+import {store} from "./app/store";
+
+const theme = {
+  dark: {
+    primary: '#000',
+    text: '#fff'
+  },
+  light: {
+    primary: '#fff',
+    text: '#000'
+  },
+  text: '#0620a2',
+  // fontFamily: 'Roboto',
+  // fontFamily: 'Segoe UI',
+  fontFamily: 'system-ui',
+  // fontFamily: 'cursive',
+  // fontFamily: 'sans-serif',
+}
+
+const GlobalStyle = createGlobalStyle`
+  button {
+    font-family: ${props => props.theme.fontFamily}
+  }
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle/>
+      <Provider store={store}>
+        <TodoApp/>
+      </Provider>
+    </ThemeProvider>
   );
 }
 
