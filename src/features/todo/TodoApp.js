@@ -20,7 +20,7 @@ const TodoApp = () => {
 
   return (
     <Container>
-      <Header>React Todo App</Header>
+      <Header>React Todo App v2</Header>
       <TodoInput/>
       <TodoList list={todos}/>
     </Container>
